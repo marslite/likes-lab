@@ -1,7 +1,5 @@
 import tokenService from './tokenService';
 
-
-
 const BASE_URL = '/api/users/';
 
 
@@ -40,8 +38,23 @@ function getUser() {
   return tokenService.getUserFromToken();
 }
 
+
+//My implementation beofore the  actual lecture
+
 function logout() {
-  tokenService.removeToken();
+  return fetch(BASE_URL + 'logout', {
+    method: 'POST',
+    headers: new Headers({
+    'Content-Type': 'application/json',
+    Authorization: "Bearer " + tokenService.getToken()
+  })
+  }).then(res => {
+    tokenService.removeToken();
+    if (res.ok) return res.json();
+    throw new Error('YOU CANNOT LOGOUT');
+  })
+
+  // tokenService.removeToken();
 }
 
 function login(creds) {

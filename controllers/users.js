@@ -20,7 +20,8 @@ const BUCKET_NAME = process.env.BUCKET_NAME
 module.exports = {
   signup,
   login,
-  profile
+  profile,
+  logout
 };
 
 
@@ -112,6 +113,29 @@ async function login(req, res) {
     return res.status(401).json(err);
   }
 }
+
+
+//My implementation beofore the  actual lecture
+
+async function logout(req, res){
+  console.log("GETTING INSIDE LOGOUT")
+  try {
+    if(req.user){
+      // logged.logout()
+      return res.status(200).json({message: "Succesfully Logged out"})
+    }else{
+      return res.status(401).json({err: "Not able to log out"});
+    }
+
+    
+  } catch (err) {
+    return res.status(401).json({err: "Dindn't work"});
+    
+  }
+}
+
+
+
 
 /*----- Helper Functions -----*/
 

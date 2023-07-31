@@ -16,6 +16,11 @@ const upload = multer()
 //	formData.append('photo', selectedFile);
 router.post("/signup", upload.single('photo'), usersCtrl.signup);
 router.post("/login", usersCtrl.login);
+//My implementation beofore the  actual lecture
+// router.post("/logout", usersCtrl.logout)
+
+
+
 // this is params for the api request coming from the react side
 // /api/users/frenchacking
 // /api/users/bobwier

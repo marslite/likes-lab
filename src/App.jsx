@@ -27,6 +27,18 @@ function App() {
   }
 
 
+  //My implementation beofore the  actual lecture
+  //That's the handleLogout calling logout from the userService and then
+  //setting null to setUser after the JWT token has been deleted by the logout function
+
+  function handleLogout(){
+    userService.logout();
+    setUser(null);
+  }
+
+
+
+
   if(!user){
     // if the user is not logged in only render the following routes
     return (
@@ -47,6 +59,10 @@ function App() {
       <Route path="/login" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />} />
       <Route path="/signup" element={<SignUpPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
       <Route path="/:username" element={<ProfilePage user={user}/>} />
+      <Route path="/*" element={<FeedPage user={user} />} />
+      {/* //My implementation beofore the  actual lecture */}
+      {/* <Route path="/" element={<FeedPage user={user} logout={handleLogout}/> }/> */}
+
     </Routes>
   );
 }
